@@ -104,36 +104,31 @@ const convertToTryon =  async (bodyBase64String, clothingBase64String, GeminiAPI
     const SI_imageData = fs.readFileSync(standingPose_FILE_LOCATION);
     const SI_imageDataString = SI_imageData.toString("base64");
 
-    const prompt = [
+  const prompt = [
+    { text: "Place the clothing item from the second image onto the person in the first image, making it appear as if they are wearing it naturally. The background should be completely white with a gradual grey point or a fade so the user could see in detail, and the output body should be a natural standing pose; the natural pose should look like the third image, if there are no pockets to put hands in, then just don't put the hands in, try to make the body fit the image resolution as much as possible and upscale it until it fits just right, make sure the body is in the center of the image. If there are any watermarks in the final result, Remove Them/It" },
     {
-        text: `Place the clothing item from the second image onto the person in the first image, making it appear as if they are wearing it naturally. The background should be completely white with a gradual grey point or a fade so the user could see in detail, and the output body should be a natural standing pose; the natural pose should look like the third image, if there are no pockets to put hands in, then just don't put the hands in, try to make the body fit the image resolution as much as possible and upscale it until it fits just right, make sure the body is in the center of the image.`
-    },
-    {
-        inlineData: {
+      inlineData: {
         mimeType: "image/png",
         data: BI_imageDataString,
-        }
+      },
     },
     {
-        inlineData: {
+      inlineData: {
         mimeType: "image/png",
         data: CI_imageDataString,
-        }
+      },
     },
     {
-        inlineData: {
+      inlineData: {
         mimeType: "image/png",
         data: SI_imageDataString,
-        }
+      },
     }
-
-    ];
-
+  ];
     const response = await ai.models.generateContent({
         model: "gemini-2.5-flash-image-preview",
         contents: prompt,
     });
-
     for (const part of response.candidates[0].content.parts) {
         if (part.text) {
             console.log(part.text);
@@ -141,8 +136,9 @@ const convertToTryon =  async (bodyBase64String, clothingBase64String, GeminiAPI
             const imageData = part.inlineData.data;
             const buffer = Buffer.from(imageData, "base64");
             fs.writeFileSync(path.join(tryonImagesFolder, `${currentIndex}.jpeg`), buffer);
+            console.log("saved Image");
         }
-  }
+    }
 
 }
 
