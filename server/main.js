@@ -1,6 +1,6 @@
 import * as fs from "fs"
 import path from "path"
-import { GoogleGenAI, Modality } from "@google/genai" //  AIzaSyAJx4bf8xL0lcNIIqDO_dyx2z-s_mBSOgs <--- APIKEY
+import { GoogleGenAI, Modality } from "@google/genai"
 import express from "express";
 import cors from "cors";
 import { fileURLToPath } from "url";
