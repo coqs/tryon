@@ -1,3 +1,6 @@
+# Previews:
+<img width="767" height="667" alt="image" src="https://github.com/user-attachments/assets/dfa4b64e-d0b7-4e6b-a6d6-9261ef97fb25" />
+<img width="792" height="778" alt="image" src="https://github.com/user-attachments/assets/97723064-1285-4c18-a6d6-52e5818411a6" />
 # What is this?
 this is a simple TryOn app with the Gemini NanoBanana model, </br> the backend code is clean, so feel free to check it out. </br>
 # How to use this?
